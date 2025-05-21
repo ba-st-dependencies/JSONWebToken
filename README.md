@@ -15,9 +15,9 @@ The `release-candidate` is the branch where our changes land before releasing a 
 [![Markdown Lint](https://github.com/ba-st-dependencies/JSONWebToken/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/ba-st-dependencies/JSONWebToken/actions/workflows/markdown-lint.yml)
 
 [![GitHub release](https://img.shields.io/github/release/ba-st-dependencies/JSONWebToken.svg)](https://github.com/ba-st-dependencies/JSONWebToken/releases/latest)
-[![Pharo 9.0](https://img.shields.io/badge/Pharo-9.0-informational)](https://pharo.org)
 [![Pharo 10](https://img.shields.io/badge/Pharo-10-informational)](https://pharo.org)
 [![Pharo 11](https://img.shields.io/badge/Pharo-11-informational)](https://pharo.org)
+[![Pharo 12](https://img.shields.io/badge/Pharo-12-informational)](https://pharo.org)
 
 [![GS64 3.7.0](https://img.shields.io/badge/GS64-3.7.0-informational)](https://gemtalksystems.com/products/gs64/)
 [![GS64 3.7.1](https://img.shields.io/badge/GS64-3.7.1-informational)](https://gemtalksystems.com/products/gs64/)
