@@ -16,7 +16,7 @@ BaselineOfJSONWebToken >> baseline: spec [
 			with: [ spec repository: 'github://svenvc/NeoJSON:master' ].
 		spec baseline: 'OpenSSL' with: [
 			spec repository:
-				'github://PierceNg/OpenSSL-Pharo:openssl_1_1_pharo9/src-st' ].
+				'github://ApptiveGrid/OpenSSL-Pharo:openssl_pharo12/src-st' ].
 		spec
 			package: 'JSONWebToken-Core'
 			with: [ spec requires: #( 'NeoJSON' ) ];
