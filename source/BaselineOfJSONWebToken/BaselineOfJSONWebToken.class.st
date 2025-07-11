@@ -13,7 +13,10 @@ BaselineOfJSONWebToken >> baseline: spec [
 		spec postLoadDoIt: #configureMessageDigestAlgorithms.
 		spec
 			baseline: 'NeoJSON'
-			with: [ spec repository: 'github://svenvc/NeoJSON:master' ].
+			with: [
+				spec
+					repository: 'github://ba-st-dependencies/NeoJSON:v20';
+					loads: 'Deployment' ].
 		spec baseline: 'OpenSSL' with: [
 			spec repository:
 				'github://ApptiveGrid/OpenSSL-Pharo:openssl_pharo12/src-st' ].
