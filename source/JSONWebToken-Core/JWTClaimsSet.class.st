@@ -1,11 +1,15 @@
 "
 A set of specific claims
+
+The registered claim names are: iss, sub, aud, exp, nbf, iat, jti
+None of the claims defined are intended to be mandatory to use or implement in all cases, but rather they provide a starting point for a set of useful, interoperable claims.
 "
 Class {
 	#name : 'JWTClaimsSet',
 	#superclass : 'Object',
 	#instVars : [
-		'claims'
+		'claims',
+		'strict'
 	],
 	#category : 'JSONWebToken-Core-Base',
 	#package : 'JSONWebToken-Core',
@@ -24,8 +28,11 @@ JWTClaimsSet >> asJson [
 ]
 
 { #category : 'accessing - basic' }
-JWTClaimsSet >> at: aString [ 
-	^ claims at: aString
+JWTClaimsSet >> at: aString [
+
+	^ strict
+		  ifTrue: [ claims at: aString ]
+		  ifFalse: [ claims at: aString ifAbsent: [ nil ] ]
 ]
 
 { #category : 'accessing - basic' }
@@ -93,6 +100,18 @@ JWTClaimsSet >> authorizedParty: anObject [
 	self at: 'azp' put: anObject
 ]
 
+{ #category : 'public' }
+JWTClaimsSet >> beLenient [
+
+	strict := false
+]
+
+{ #category : 'public' }
+JWTClaimsSet >> beStrict [
+
+	strict := true
+]
+
 { #category : 'accessing' }
 JWTClaimsSet >> claims [
 	^ claims
@@ -142,6 +161,7 @@ JWTClaimsSet >> iat: anObject [
 JWTClaimsSet >> initialize [
 	super initialize.
 	claims := Dictionary new.
+	strict := true
 ]
 
 { #category : 'accessing' }
@@ -175,8 +195,38 @@ JWTClaimsSet >> issuer: anObject [
 ]
 
 { #category : 'accessing' }
+JWTClaimsSet >> jti [
+	^ self at: 'jti'
+]
+
+{ #category : 'accessing' }
+JWTClaimsSet >> jti: aString [
+	self at: 'jti' put: aString
+]
+
+{ #category : 'accessing' }
+JWTClaimsSet >> jwtId [
+	^ self jti
+]
+
+{ #category : 'accessing' }
+JWTClaimsSet >> jwtId: aString [
+	self jti: aString
+]
+
+{ #category : 'accessing' }
 JWTClaimsSet >> mimeType [
 	^ 'JWT'
+]
+
+{ #category : 'accessing' }
+JWTClaimsSet >> nbf [
+	^ self at: 'nbf'
+]
+
+{ #category : 'accessing' }
+JWTClaimsSet >> nbf: aString [
+	self at: 'nbf' put: aString
 ]
 
 { #category : 'accessing' }
@@ -187,6 +237,16 @@ JWTClaimsSet >> nonce [
 { #category : 'accessing' }
 JWTClaimsSet >> nonce: anObject [
 	self at: 'nonce' put: anObject
+]
+
+{ #category : 'accessing' }
+JWTClaimsSet >> notBefore [
+	^ self nbf
+]
+
+{ #category : 'accessing' }
+JWTClaimsSet >> notBefore: aString [
+	self nbf: aString
 ]
 
 { #category : 'accessing' }

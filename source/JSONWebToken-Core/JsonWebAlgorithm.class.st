@@ -10,24 +10,18 @@ Class {
 }
 
 { #category : 'sign' }
-JsonWebAlgorithm class >> checkSignature: token withKey: publicKey [
+JsonWebAlgorithm class >> checkSignature: token withKey: key [
 	"keep this method backward compatible also accepting already splitted parts"
-
-	| tokenParts |
-
-	tokenParts := token isString
-		              ifTrue: [ $. split: token ]
-		              ifFalse: [ token ].
-
-	self checkSignature: tokenParts third withKey: publicKey isValidFor: ( '.' join: {
-				  tokenParts first.
-				  tokenParts second } )
+	self 
+		checkSignatureOfParts: (token isString 
+			ifTrue: [ $. split: token ]
+			ifFalse: [ token ])
+		withKey: key
 ]
 
 { #category : 'sign' }
-JsonWebAlgorithm class >> checkSignature: signature withKey: key isValidFor: headerAndPayload [
-
-	self subclassResponsibility
+JsonWebAlgorithm class >> checkSignatureOfParts: parts withKey: key [
+	self subclassResponsibility 
 ]
 
 { #category : 'testing' }
@@ -45,10 +39,4 @@ JsonWebAlgorithm class >> named: aString [
 { #category : 'accessing' }
 JsonWebAlgorithm class >> parameterValue [
 	self shouldBeImplemented 
-]
-
-{ #category : 'sign' }
-JsonWebAlgorithm class >> signMessage: aString withKey: key [
-
-	self subclassResponsibility
 ]

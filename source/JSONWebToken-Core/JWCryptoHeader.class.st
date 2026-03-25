@@ -13,6 +13,11 @@ Class {
 }
 
 { #category : 'accessing' }
+JWCryptoHeader >> alg [
+	^ properties at: 'alg'
+]
+
+{ #category : 'accessing' }
 JWCryptoHeader >> alg: anObject [
 	properties at: 'alg' put: anObject
 ]
