@@ -19,7 +19,8 @@ JWANone class >> parameterValue [
 	^ 'none'
 ]
 
-{ #category : 'signing' }
-JWANone class >> signMessage: aString withKey: aKeyString [
-	^ #[]
+{ #category : 'sign' }
+JWANone class >> signMessage: aString withKey: key [
+
+  ^ #[  ]
 ]

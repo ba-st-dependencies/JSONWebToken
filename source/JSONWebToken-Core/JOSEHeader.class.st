@@ -31,9 +31,9 @@ JOSEHeader >> = aHeader [
 { #category : 'accessing' }
 JOSEHeader >> at: aString [
 
-	^ strict
-		  ifTrue: [ properties at: aString ]
-		  ifFalse: [ properties at: aString ifAbsent: nil ]
+  ^ strict
+      ifTrue: [ properties at: aString ]
+      ifFalse: [ properties at: aString ifAbsent: [ nil ] ]
 ]
 
 { #category : 'accessing' }

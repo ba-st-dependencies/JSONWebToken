@@ -16,7 +16,7 @@ Class {
 	#tag : 'Base'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'converting' }
 JWTClaimsSet class >> fromJson: aString [
 	^ self new 
 		setClaims: (NeoJSONReader fromString: aString)

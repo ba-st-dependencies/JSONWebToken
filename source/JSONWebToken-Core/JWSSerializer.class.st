@@ -21,16 +21,15 @@ JWSSerializer class >> base64UrlDecoded: aBase64String [
 	^ Base64UrlEncoder new decode: aBase64String base64Padded
 ]
 
-{ #category : 'conversion' }
+{ #category : 'converting' }
 JWSSerializer class >> base64UrlEncoded: aByteArray [
-
-	"According to https://tools.ietf.org/html/rfc7519#page-4 the encoding needs to be base64Url.
+  "According to https://tools.ietf.org/html/rfc7519#page-4 the encoding needs to be base64Url.
 	The padding is stripped as it is not used for transport in JWT"
 
-	^ ( Base64UrlEncoder new encode: aByteArray ) copyWithoutAll: '='
+  ^ ( Base64UrlEncoder new encode: aByteArray ) copyWithout: $=
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'converting' }
 JWSSerializer class >> toJson: anObject [
 	^ NeoJSONWriter toString: anObject
 ]
