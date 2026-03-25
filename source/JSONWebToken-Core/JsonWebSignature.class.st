@@ -63,7 +63,7 @@ JsonWebSignature >> checkSignature: aString [
 			'.' join: aString  ]
 		ifFalse: [ aString ].
 	
-	self protectedHeader algorithm checkSignature: token withKey: publicKey
+	self protectedHeader algorithm checkSignature: token withKey: self publicKey
 
 ]
 
@@ -154,7 +154,7 @@ JsonWebSignature >> setProtectedHeader: aHeader [
 { #category : 'signing' }
 JsonWebSignature >> signatureFor: aString [
 
-	^ self protectedHeader algorithm signMessage: aString withKey: privateKey
+  ^ self protectedHeader algorithm signMessage: aString withKey: self privateKey
 ]
 
 { #category : 'configuring' }
@@ -166,11 +166,12 @@ JsonWebSignature >> symmetricKey: aKey [
 ]
 
 { #category : 'writing' }
-JsonWebSignature >> writePayloadOn: aSerializer [ 
-	aSerializer writePayload: payload
+JsonWebSignature >> writePayloadOn: aSerializer [
+
+  aSerializer writePayload: self payload
 ]
 
 { #category : 'writing' }
 JsonWebSignature >> writeProtectedHeaderOn: aSerializer [ 
-	aSerializer writeHeader: protectedHeader
+	aSerializer writeHeader: self header
 ]

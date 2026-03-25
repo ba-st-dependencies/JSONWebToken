@@ -33,7 +33,8 @@ JsonWebAlgorithm class >> checkSignature: signature withKey: key isValidFor: hea
 { #category : 'testing' }
 JsonWebAlgorithm class >> isAbstract [
 
-	^self name = #JsonWebAlgorithm 
+  <ignoreForCoverage>
+  ^ self name = #JsonWebAlgorithm
 ]
 
 { #category : 'instance creation' }
@@ -44,7 +45,8 @@ JsonWebAlgorithm class >> named: aString [
 
 { #category : 'accessing' }
 JsonWebAlgorithm class >> parameterValue [
-	self shouldBeImplemented 
+
+  ^ self subclassResponsibility
 ]
 
 { #category : 'sign' }

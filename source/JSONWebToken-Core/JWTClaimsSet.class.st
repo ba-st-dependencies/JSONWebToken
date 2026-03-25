@@ -24,7 +24,7 @@ JWTClaimsSet class >> fromJson: aString [
 
 { #category : 'converting' }
 JWTClaimsSet >> asJson [
-	^ NeoJSONWriter toString: claims
+	^ NeoJSONWriter toString: self claims
 ]
 
 { #category : 'accessing - basic' }
@@ -157,11 +157,12 @@ JWTClaimsSet >> iat: anObject [
 	self at: 'iat' put: anObject
 ]
 
-{ #category : 'initialize' }
+{ #category : 'initialization' }
 JWTClaimsSet >> initialize [
-	super initialize.
-	claims := Dictionary new.
-	strict := true
+
+  super initialize.
+  claims := OrderedDictionary new.
+  self beStrict 
 ]
 
 { #category : 'accessing' }

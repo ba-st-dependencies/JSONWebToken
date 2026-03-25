@@ -64,20 +64,21 @@ JOSEHeader >> hash [
 ]
 
 { #category : 'initialization' }
-JOSEHeader >> initialize [ 
-	super initialize.
-	strict := true
+JOSEHeader >> initialize [
+
+  super initialize.
+  self beStrict
 ]
 
 { #category : 'accessing' }
 JOSEHeader >> kid [
 "Public Key ID"
-	^ properties at: 'kid'
+	^ self at: 'kid'
 ]
 
 { #category : 'accessing' }
 JOSEHeader >> kid: anObject [
-	properties at: 'kid' put: anObject
+	self at: 'kid' put: anObject
 ]
 
 { #category : 'accessing' }
@@ -92,10 +93,10 @@ JOSEHeader >> typ: aString [
 
 { #category : 'accessing' }
 JOSEHeader >> type [
-	^ properties at: 'typ'
+	^ self at: 'typ'
 ]
 
 { #category : 'accessing' }
 JOSEHeader >> type: anObject [
-	properties at: 'typ' put: anObject
+	self at: 'typ' put: anObject
 ]
