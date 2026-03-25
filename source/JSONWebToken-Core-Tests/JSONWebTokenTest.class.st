@@ -2,12 +2,13 @@
 Unit tests for JSON web tokens
 "
 Class {
-	#name : #JSONWebTokenTest,
-	#superclass : #TestCase,
-	#category : #'JSONWebToken-Core-Tests'
+	#name : 'JSONWebTokenTest',
+	#superclass : 'TestCase',
+	#category : 'JSONWebToken-Core-Tests',
+	#package : 'JSONWebToken-Core-Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 JSONWebTokenTest >> simpleJsonWebSignature [
 	^ JsonWebSignature new
 			algorithmName: 'HS256';
@@ -16,22 +17,23 @@ JSONWebTokenTest >> simpleJsonWebSignature [
 			symmetricKey: 'foobar'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 JSONWebTokenTest >> simpleTokenString [
 	^ self simpleJsonWebSignature compactSerialized.
 ]
 
-{ #category : #tests }
-JSONWebTokenTest >> testDecodingThreeParts [ 
-	| tokenString invalid |
-	tokenString := self simpleTokenString.
-	invalid := '.' join: ($. split: tokenString) allButLast.
-	self 
-		should: [ JsonWebSignature materializeCompact: invalid key: 'foobar' ]
-		raise: JWSInvalidTokenFormat.
+{ #category : 'tests' }
+JSONWebTokenTest >> testDecodingThreeParts [
+
+  | tokenString invalid |
+  tokenString := self simpleTokenString.
+  invalid := '.' join: ( $. split: tokenString ) allButLast.
+  self
+    should: [ JsonWebSignature materializeCompact: invalid key: 'foobar' ]
+    raise: JWSInvalidTokenFormat
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenTest >> testEncoding [
 
 	"This test verifies the token serialization against https://jwt.io/"
@@ -56,7 +58,7 @@ JSONWebTokenTest >> testEncoding [
 			'eyJhbGciOiJIUzI1NiJ9.eyJzY29wZSI6InJlYWQ6b3BlcmF0aW9ucyByZWFkOm1ldHJpY3MgZXhlY3V0ZTpoZWFsdGgtY2hlY2sgcmVhZDphcHBsaWNhdGlvbi1pbmZvIGV4ZWN1dGU6YXBwbGljYXRpb24tY29udHJvbCByZWFkOmFwcGxpY2F0aW9uLWNvbmZpZ3VyYXRpb24ifQ.-3meQq_ATpkE4FwFefP0AEBrFh9_llQxVXjnf-HLrIU'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenTest >> testFailingSignatureChecking [
 
 	| jws tokenString |
@@ -73,7 +75,7 @@ JSONWebTokenTest >> testFailingSignatureChecking [
 		raise: CryptoError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenTest >> testPadding [
 
 	self 
@@ -83,7 +85,7 @@ JSONWebTokenTest >> testPadding [
 		assert: '4242' base64Padded equals: '4242'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenTest >> testRoundtrip [
 	| jws tokenString materialized |
 	
@@ -101,7 +103,7 @@ JSONWebTokenTest >> testRoundtrip [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenTest >> testUnsecuredJWT [
 
 	| jws tokenString materialized |

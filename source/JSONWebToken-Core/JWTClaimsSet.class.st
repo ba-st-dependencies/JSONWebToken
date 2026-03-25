@@ -2,212 +2,214 @@
 A set of specific claims
 "
 Class {
-	#name : #JWTClaimsSet,
-	#superclass : #Object,
+	#name : 'JWTClaimsSet',
+	#superclass : 'Object',
 	#instVars : [
 		'claims'
 	],
-	#category : 'JSONWebToken-Core-Base'
+	#category : 'JSONWebToken-Core-Base',
+	#package : 'JSONWebToken-Core',
+	#tag : 'Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 JWTClaimsSet class >> fromJson: aString [
 	^ self new 
 		setClaims: (NeoJSONReader fromString: aString)
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 JWTClaimsSet >> asJson [
 	^ NeoJSONWriter toString: claims
 ]
 
-{ #category : #'accessing - basic' }
+{ #category : 'accessing - basic' }
 JWTClaimsSet >> at: aString [ 
 	^ claims at: aString
 ]
 
-{ #category : #'accessing - basic' }
+{ #category : 'accessing - basic' }
 JWTClaimsSet >> at: aString put: anObject [ 
 	claims at: aString put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> aud [
 	^ self at: 'aud'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> aud: aString [
 	self at: 'aud' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> audiences [
 	^ self aud
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> audiences: anObject [
 	self aud: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authTime [
 	^ self at: 'auth_time'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authTime: anObject [
 	self at: 'auth_time' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authenticationContextClassReference [
 	^ self at: 'acr'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authenticationContextClassReference: anObject [
 	self at: 'acr' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authenticationMethodsReference [
 	^ self at: 'amr'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authenticationMethodsReference: anObject [
 	self at: 'amr' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authorizedParty [
 	^ self at: 'azp'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> authorizedParty: anObject [
 	self at: 'azp' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> claims [
 	^ claims
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> exp [
 	^ self expirationTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> exp: aNumber [
 	self expirationTime: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> expirationTime [
 	^ self at: 'exp'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> expirationTime: anObject [
 	self at: 'exp' put: anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 JWTClaimsSet >> hasSameClaims: aDictionary [
 	^ (claims difference: aDictionary) isEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 JWTClaimsSet >> hasSameElements: anObject [
 	^ anObject hasSameClaims: claims
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> iat [
 	^ self at: 'iat'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> iat: anObject [
 	self at: 'iat' put: anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 JWTClaimsSet >> initialize [
 	super initialize.
 	claims := Dictionary new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> iss [
 	^ self at: 'iss'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> iss: aString [
 	self at: 'iss' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> issuedAt [
 	^ self iat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> issuedAt: anObject [
 	self iat: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> issuer [
 	^ self iss
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> issuer: anObject [
 	self iss: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> mimeType [
 	^ 'JWT'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> nonce [
 	^ self at: 'nonce'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> nonce: anObject [
 	self at: 'nonce' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> setClaims: aCollection [
 	claims := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> sub [
 	^ self at: 'sub'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> sub: aString [
 	self at: 'sub' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> subject [
 	^ self sub
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWTClaimsSet >> subject: anObject [
 	self sub: anObject
 ]

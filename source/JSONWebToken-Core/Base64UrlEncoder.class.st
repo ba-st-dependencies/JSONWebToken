@@ -7,37 +7,39 @@ Basically, every 3 bytes are encoded using 4 characters from an alphabet of 64. 
 
 "
 Class {
-	#name : #Base64UrlEncoder,
-	#superclass : #Object,
+	#name : 'Base64UrlEncoder',
+	#superclass : 'Object',
 	#instVars : [
 		'encoder'
 	],
 	#classVars : [
 		'URLSafeAlphabet'
 	],
-	#category : #'JSONWebToken-Core-Serialization'
+	#category : 'JSONWebToken-Core-Serialization',
+	#package : 'JSONWebToken-Core',
+	#tag : 'Serialization'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Base64UrlEncoder class >> initialize [
 
 	<ignoreForCoverage>
 	URLSafeAlphabet := 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 Base64UrlEncoder >> decode: string [
 
 	^ encoder decode: string
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 Base64UrlEncoder >> encode: byteArray [
 
 	^ encoder encode: byteArray
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Base64UrlEncoder >> initialize [
 
 	super initialize.

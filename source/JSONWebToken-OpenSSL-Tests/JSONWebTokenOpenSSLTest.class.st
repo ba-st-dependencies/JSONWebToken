@@ -1,10 +1,11 @@
 Class {
-	#name : #JSONWebTokenOpenSSLTest,
-	#superclass : #TestCase,
-	#category : #'JSONWebToken-OpenSSL-Tests'
+	#name : 'JSONWebTokenOpenSSLTest',
+	#superclass : 'TestCase',
+	#category : 'JSONWebToken-OpenSSL-Tests',
+	#package : 'JSONWebToken-OpenSSL-Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 JSONWebTokenOpenSSLTest >> privateKey [
 
 	^ '-----BEGIN RSA PRIVATE KEY-----
@@ -36,10 +37,10 @@ jg/3747WSsf/zBTcHihTRBdAv6OmdhV4/dD5YBfLAkLrd+mX7iE=
 -----END RSA PRIVATE KEY-----'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 JSONWebTokenOpenSSLTest >> publicKey [
 
-	^ '-----BEGIN PUBLIC KEY-----
+  ^ '-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnzyis1ZjfNB0bBgKFMSv
 vkTtwlvBsaJq7S5wA+kzeVOVpVWwkWdVha4s38XM/pa/yr47av7+z3VTmvDRyAHc
 aT92whREFpLv9cj5lTeJSibyr/Mrm/YtjCZVWgaOYIhwrXwKLqPr/11inWsAkfIy
@@ -50,7 +51,7 @@ MwIDAQAB
 -----END PUBLIC KEY-----'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenOpenSSLTest >> testFailingSignatureChecking [
 
 	| jws tokenString |
@@ -69,7 +70,7 @@ JSONWebTokenOpenSSLTest >> testFailingSignatureChecking [
 		raise: CryptoError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenOpenSSLTest >> testRSAEncoding [
 	"This test verifies the token serialization against https://jwt.io/"
 
@@ -92,7 +93,7 @@ JSONWebTokenOpenSSLTest >> testRSAEncoding [
 		'eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6InJlYWQ6b3BlcmF0aW9ucyByZWFkOm1ldHJpY3MgZXhlY3V0ZTpoZWFsdGgtY2hlY2sgcmVhZDphcHBsaWNhdGlvbi1pbmZvIGV4ZWN1dGU6YXBwbGljYXRpb24tY29udHJvbCByZWFkOmFwcGxpY2F0aW9uLWNvbmZpZ3VyYXRpb24ifQ.GAOd8yN4b1R85hF4BrI7SUtdrQClMrymg7BaZoSIPezc9j-qBvIzJNcZT0a_hE44v8XUhHQJaaMzCgEoIWvN_i31RhL-NT_d85m2jm1HAd1hdePveS5shgYGVa0YUloRqLUsaTK03spCe3AayHBxG0-IJdw5ZZ85grce1JFc-T3uxGE_meuSBSYoW8QWEQ7hyBkHrJX0Twu1W0VMRGQw1UDnur2xxVZnz66iAYEQVZUQmsbMqgwOPETNvlvfmTQJq4V_hbc9bNmzJwo8TeoH5_lUYkPp5wWtT3H7dZpNEROP8QGgHiO9Y8ByKOBSrlNOID0pBvNlRbOAz_2Vmiir-g'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 JSONWebTokenOpenSSLTest >> testRoundtrip [
 
 	| jws tokenString materialized |

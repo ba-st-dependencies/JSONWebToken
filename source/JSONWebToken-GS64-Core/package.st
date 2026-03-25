@@ -1,1 +1,1 @@
-Package { #name : #'JSONWebToken-GS64-Core' }
+Package { #name : 'JSONWebToken-GS64-Core' }

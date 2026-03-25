@@ -2,12 +2,13 @@
 A MessageDigestAlgorithmTest is a test class for testing the behavior of MessageDigestAlgorithm
 "
 Class {
-	#name : #MessageDigestAlgorithmTest,
-	#superclass : #TestCase,
-	#category : #'JSONWebToken-Core-Tests'
+	#name : 'MessageDigestAlgorithmTest',
+	#superclass : 'TestCase',
+	#category : 'JSONWebToken-Core-Tests',
+	#package : 'JSONWebToken-Core-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 MessageDigestAlgorithmTest >> testSHA1Accessing [
 
 	self
@@ -17,7 +18,7 @@ MessageDigestAlgorithmTest >> testSHA1Accessing [
 		equals: 160
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MessageDigestAlgorithmTest >> testSHA1Digest [
 
 	| message |

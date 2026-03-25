@@ -2,12 +2,13 @@
 RSA SHA256
 "
 Class {
-	#name : #GsJWARSASHA256,
-	#superclass : #JsonWebAlgorithm,
-	#category : #'JSONWebToken-GS64-Core'
+	#name : 'GsJWARSASHA256',
+	#superclass : 'JsonWebAlgorithm',
+	#category : 'JSONWebToken-GS64-Core',
+	#package : 'JSONWebToken-GS64-Core'
 }
 
-{ #category : #sign }
+{ #category : 'sign' }
 GsJWARSASHA256 class >> checkSignature: signature withKey: publicKeyOrString isValidFor: headerAndPayload [
 
 	^ headerAndPayload
@@ -15,13 +16,13 @@ GsJWARSASHA256 class >> checkSignature: signature withKey: publicKeyOrString isV
 		  signature: ( JWSSerializer base64UrlDecoded: signature )
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GsJWARSASHA256 class >> parameterValue [
 
 	^ 'RS256'
 ]
 
-{ #category : #sign }
+{ #category : 'sign' }
 GsJWARSASHA256 class >> signMessage: aString withKey: privateKeyOrString [
 
 	^ aString signWithSha256AndRsaPrivateKey: privateKeyOrString asPrivateKey into: nil

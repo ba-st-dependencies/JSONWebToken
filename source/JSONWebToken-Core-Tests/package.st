@@ -1,1 +1,1 @@
-Package { #name : #'JSONWebToken-Core-Tests' }
+Package { #name : 'JSONWebToken-Core-Tests' }

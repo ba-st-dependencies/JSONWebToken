@@ -2,22 +2,24 @@
 An empty algorithm for not signing
 "
 Class {
-	#name : #JWANone,
-	#superclass : #JsonWebAlgorithm,
-	#category : #'JSONWebToken-Core-Algorithms'
+	#name : 'JWANone',
+	#superclass : 'JsonWebAlgorithm',
+	#category : 'JSONWebToken-Core-Algorithms',
+	#package : 'JSONWebToken-Core',
+	#tag : 'Algorithms'
 }
 
-{ #category : #sign }
+{ #category : 'sign' }
 JWANone class >> checkSignature: signature withKey: key isValidFor: headerAndPayload [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWANone class >> parameterValue [
 	^ 'none'
 ]
 
-{ #category : #signing }
+{ #category : 'signing' }
 JWANone class >> signMessage: aString withKey: key [
 	^ #[]
 ]

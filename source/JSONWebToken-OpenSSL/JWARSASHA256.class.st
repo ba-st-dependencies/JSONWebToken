@@ -2,12 +2,13 @@
 RSA SHA256 
 "
 Class {
-	#name : #JWARSASHA256,
-	#superclass : #JsonWebAlgorithm,
-	#category : #'JSONWebToken-OpenSSL'
+	#name : 'JWARSASHA256',
+	#superclass : 'JsonWebAlgorithm',
+	#category : 'JSONWebToken-OpenSSL',
+	#package : 'JSONWebToken-OpenSSL'
 }
 
-{ #category : #sign }
+{ #category : 'sign' }
 JWARSASHA256 class >> checkSignature: signature withKey: publicKeyOrString isValidFor: headerAndPayload [
 
 	| signatureAsBytes publicKey |
@@ -25,12 +26,13 @@ JWARSASHA256 class >> checkSignature: signature withKey: publicKeyOrString isVal
 		]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JWARSASHA256 class >> parameterValue [
-	^ 'RS256'
+
+  ^ 'RS256'
 ]
 
-{ #category : #sign }
+{ #category : 'sign' }
 JWARSASHA256 class >> signMessage: message withKey: privateKeyOrString [
 
 	| privateKey |

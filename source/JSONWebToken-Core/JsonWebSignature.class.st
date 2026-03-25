@@ -2,57 +2,59 @@
 A JSON web signature
 "
 Class {
-	#name : #JsonWebSignature,
-	#superclass : #Object,
+	#name : 'JsonWebSignature',
+	#superclass : 'Object',
 	#instVars : [
 		'payload',
 		'protectedHeader',
 		'publicKey',
 		'privateKey'
 	],
-	#category : #'JSONWebToken-Core-Base'
+	#category : 'JSONWebToken-Core-Base',
+	#package : 'JSONWebToken-Core',
+	#tag : 'Base'
 }
 
-{ #category : #materializing }
+{ #category : 'materializing' }
 JsonWebSignature class >> materializeCompact: aString key: aKeyString [
 	^ self materializeCompact: aString key: aKeyString checkSignature: true
 		
 ]
 
-{ #category : #materializing }
+{ #category : 'materializing' }
 JsonWebSignature class >> materializeCompact: aString key: aKeyString checkSignature: checkSignature [
 	^ JWSCompactSerializer new materialize: aString key: aKeyString checkSignature: checkSignature
 		
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 JsonWebSignature >> = aWebSignature [
 	^ (aWebSignature hasSameProtectedHeader: protectedHeader) and: [ 
 		aWebSignature hasSamePayload: payload ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> algorithm [
 	^ self protectedHeader algorithm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> algorithm: anAlgorithm [
 	self protectedHeader algorithm: anAlgorithm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> algorithmName: aString [
 	self algorithm: (JsonWebAlgorithm named: aString)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 JsonWebSignature >> base64UrlDecoded: aBase64String [
 
 	^ JWSSerializer base64UrlDecoded: aBase64String
 ]
 
-{ #category : #signature }
+{ #category : 'signature' }
 JsonWebSignature >> checkSignature: aString [
 	| token |
 	token := (aString isString not) 
@@ -65,97 +67,97 @@ JsonWebSignature >> checkSignature: aString [
 
 ]
 
-{ #category : #serialization }
+{ #category : 'serialization' }
 JsonWebSignature >> compactSerialized [
 	^ JWSCompactSerializer new serialize: self 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 JsonWebSignature >> hasSameHeader: aJsonWebSignature [ 
 	self shouldBeImplemented.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 JsonWebSignature >> hasSamePayload: aPayload [
 	aPayload ifNil: [ ^ false ].
 	^ aPayload hasSameElements: payload
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 JsonWebSignature >> hasSameProtectedHeader: aHeader [
 	^ protectedHeader = aHeader
 	
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 JsonWebSignature >> hash [
 	^ protectedHeader hash bitXor: payload hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> header [
 	^ protectedHeader ifNil: [ 
 		protectedHeader := self headerClass new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> headerClass [
 	^ JWSHeader
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> payload [
 	^ payload
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> payload: anObject [
 	payload := anObject.
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> privateKey [
 
 	^ privateKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> privateKey: aKey [
 
 	privateKey := aKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> protectedHeader [
 	^ protectedHeader ifNil: [ 
 		protectedHeader := self headerClass new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> publicKey [
 
 	^ publicKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> publicKey: aKey [
 
 	publicKey := aKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebSignature >> setProtectedHeader: aHeader [ 
 	protectedHeader := aHeader
 ]
 
-{ #category : #signing }
+{ #category : 'signing' }
 JsonWebSignature >> signatureFor: aString [
 
 	^ self protectedHeader algorithm signMessage: aString withKey: privateKey
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 JsonWebSignature >> symmetricKey: aKey [
 
 	self
@@ -163,12 +165,12 @@ JsonWebSignature >> symmetricKey: aKey [
 		privateKey: aKey
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 JsonWebSignature >> writePayloadOn: aSerializer [ 
 	aSerializer writePayload: payload
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 JsonWebSignature >> writeProtectedHeaderOn: aSerializer [ 
 	aSerializer writeHeader: protectedHeader
 ]
