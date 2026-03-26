@@ -1,1 +1,1 @@
-Package { #name : #'JSONWebToken-OpenSSL' }
+Package { #name : 'JSONWebToken-OpenSSL' }

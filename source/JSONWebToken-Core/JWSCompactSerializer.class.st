@@ -4,17 +4,19 @@ compact Base-64 encoded format (using double dispatching)
 
 "
 Class {
-	#name : #JWSCompactSerializer,
-	#superclass : #JWSSerializer,
-	#category : #'JSONWebToken-Core-Serialization'
+	#name : 'JWSCompactSerializer',
+	#superclass : 'JWSSerializer',
+	#category : 'JSONWebToken-Core-Serialization',
+	#package : 'JSONWebToken-Core',
+	#tag : 'Serialization'
 }
 
-{ #category : #reading }
+{ #category : 'reading' }
 JWSCompactSerializer >> materialize: aString key: aKeyString [
 	^ self materialize: aString key: aKeyString checkSignature: true 
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 JWSCompactSerializer >> materialize: aString key: aKeyString checkSignature: checkSignature [
 
 	| parts header jws |
@@ -30,7 +32,7 @@ JWSCompactSerializer >> materialize: aString key: aKeyString checkSignature: che
 	^ jws payload: ( JWTClaimsSet fromJson: ( self class base64UrlDecoded: parts second ) utf8Decoded )
 ]
 
-{ #category : #serialization }
+{ #category : 'serialization' }
 JWSCompactSerializer >> serialize: aWebSignature [
 	| signature |
 	aWebSignature writeProtectedHeaderOn: self.
@@ -44,13 +46,13 @@ JWSCompactSerializer >> serialize: aWebSignature [
 	^ stream contents
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 JWSCompactSerializer >> writeHeader: aHeader [ 
 	stream nextPutAll: (self class base64UrlEncoded: aHeader asJson asByteArray) 
 
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 JWSCompactSerializer >> writePayload: anObject [
 	stream nextPutAll: (self class base64UrlEncoded: anObject asJson utf8Encoded) 
 ]

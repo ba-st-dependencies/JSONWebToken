@@ -2,15 +2,17 @@
 JSON Web signature serializer
 "
 Class {
-	#name : #JWSSerializer,
-	#superclass : #Object,
+	#name : 'JWSSerializer',
+	#superclass : 'Object',
 	#instVars : [
 		'stream'
 	],
-	#category : #'JSONWebToken-Core-Serialization'
+	#category : 'JSONWebToken-Core-Serialization',
+	#package : 'JSONWebToken-Core',
+	#tag : 'Serialization'
 }
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 JWSSerializer class >> base64UrlDecoded: aBase64String [
 
 	"According to https://tools.ietf.org/html/rfc7519#page-4 the encoding needs to be base64Url.
@@ -19,21 +21,20 @@ JWSSerializer class >> base64UrlDecoded: aBase64String [
 	^ Base64UrlEncoder new decode: aBase64String base64Padded
 ]
 
-{ #category : #conversion }
+{ #category : 'converting' }
 JWSSerializer class >> base64UrlEncoded: aByteArray [
-
-	"According to https://tools.ietf.org/html/rfc7519#page-4 the encoding needs to be base64Url.
+  "According to https://tools.ietf.org/html/rfc7519#page-4 the encoding needs to be base64Url.
 	The padding is stripped as it is not used for transport in JWT"
 
-	^ ( Base64UrlEncoder new encode: aByteArray ) copyWithout: $=
+  ^ ( Base64UrlEncoder new encode: aByteArray ) copyWithout: $=
 ]
 
-{ #category : #conversion }
+{ #category : 'converting' }
 JWSSerializer class >> toJson: anObject [
 	^ NeoJSONWriter toString: anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 JWSSerializer >> initialize [
 	super initialize.
 	stream := String new writeStream.

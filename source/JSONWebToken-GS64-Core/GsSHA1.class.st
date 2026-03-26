@@ -1,10 +1,11 @@
 Class {
-	#name : #GsSHA1,
-	#superclass : #MessageDigestAlgorithm,
-	#category : #'JSONWebToken-GS64-Core'
+	#name : 'GsSHA1',
+	#superclass : 'MessageDigestAlgorithm',
+	#category : 'JSONWebToken-GS64-Core',
+	#package : 'JSONWebToken-GS64-Core'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 GsSHA1 class >> initialize [
 
 	| instance |
@@ -12,55 +13,55 @@ GsSHA1 class >> initialize [
 	MessageDigestAlgorithm use: [ instance ] for: self shortName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GsSHA1 class >> shortName [
 
 	^ self sha1ShortName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GsSHA1 >> blockSizeInBits [
 
 	^ 512
 ]
 
-{ #category : #digesting }
+{ #category : 'digesting' }
 GsSHA1 >> digest: bytes [
 
-	^ bytes sha1SumBytes
+  ^ bytes sha1SumBytes
 ]
 
-{ #category : #digesting }
+{ #category : 'digesting' }
 GsSHA1 >> digestAsHexString: bytes [
 
 	^ bytes asSha1String
 ]
 
-{ #category : #digesting }
+{ #category : 'digesting' }
 GsSHA1 >> digestString: string [
 
 	^ string utf8Encoded sha1SumBytes
 ]
 
-{ #category : #digesting }
+{ #category : 'digesting' }
 GsSHA1 >> digestStringAsHexString: string [
 
 	^ string utf8Encoded asSha1String
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GsSHA1 >> messageDigestSizeInBits [
 
 	^ 160
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 GsSHA1 >> shortName [
 
 	^ self class shortName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GsSHA1 >> wordSizeInBits [
 
 	^ 32

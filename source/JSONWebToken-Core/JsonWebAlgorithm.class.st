@@ -2,51 +2,55 @@
 Abstract superclass for algorithms used for web encryption
 "
 Class {
-	#name : #JsonWebAlgorithm,
-	#superclass : #Object,
-	#category : #'JSONWebToken-Core-Algorithms'
+	#name : 'JsonWebAlgorithm',
+	#superclass : 'Object',
+	#category : 'JSONWebToken-Core-Algorithms',
+	#package : 'JSONWebToken-Core',
+	#tag : 'Algorithms'
 }
 
-{ #category : #sign }
+{ #category : 'sign' }
 JsonWebAlgorithm class >> checkSignature: token withKey: publicKey [
-	"keep this method backward compatible also accepting already splitted parts"
+  "keep this method backward compatible also accepting already splitted parts"
 
-	| tokenParts |
+  | tokenParts |
+  tokenParts := token isString
+                  ifTrue: [ $. split: token ]
+                  ifFalse: [ token ].
 
-	tokenParts := token isString
-		              ifTrue: [ $. split: token ]
-		              ifFalse: [ token ].
-
-	self checkSignature: tokenParts third withKey: publicKey isValidFor: ( '.' join: {
-				  tokenParts first.
-				  tokenParts second } )
+  self
+    checkSignature: tokenParts third
+    withKey: publicKey
+    isValidFor: ( '.' join: { tokenParts first . tokenParts second } )
 ]
 
-{ #category : #sign }
+{ #category : 'sign' }
 JsonWebAlgorithm class >> checkSignature: signature withKey: key isValidFor: headerAndPayload [
 
-	self subclassResponsibility
+  self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 JsonWebAlgorithm class >> isAbstract [
 
-	^self name = #JsonWebAlgorithm 
+  <ignoreForCoverage>
+  ^ self name = #JsonWebAlgorithm
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 JsonWebAlgorithm class >> named: aString [ 
 	^ self allSubclasses 
 		detect: [ :each | each parameterValue = aString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 JsonWebAlgorithm class >> parameterValue [
-	self shouldBeImplemented 
+
+  ^ self subclassResponsibility
 ]
 
-{ #category : #sign }
+{ #category : 'sign' }
 JsonWebAlgorithm class >> signMessage: aString withKey: key [
 
-	self subclassResponsibility
+  self subclassResponsibility
 ]
